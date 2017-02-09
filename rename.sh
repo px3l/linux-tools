@@ -2,8 +2,8 @@
 
 set -e
 
-PATH_TO_FILES=
-FILE_TYPE=
+export PATH_TO_FILES=${PATH_TO_FILES:="$1"}
+export FILE_TYPE=${FILE_TYPE:="$2"}
 
 a=1
 for i in $PATH_TO_FILES/*.$FILE_TYPE; do
