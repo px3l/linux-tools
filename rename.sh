@@ -12,6 +12,7 @@ function move_files() {
 
   for i in ${filepath}/*.${filetype}; do
     new=$(printf "%04d.$FILE_TYPE" "$imageindex") #04 pad to length of 4
+    echo "moving ${i} to ${new}"
     mv -i -- "$i" "$new"
     imageindex=$((imageindex+1))
   done
