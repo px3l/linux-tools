@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+set -e
+
 PATH_TO_FILES=
 FILE_TYPE=
 
