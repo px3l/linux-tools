@@ -36,4 +36,4 @@ if [ ! -d "${DISK_2}" ]; then
   exit 1
 fi
 
-clone_disk "${DISK_1}" "{DISK_2}"
+clone_disk "${DISK_1}" "${DISK_2}"
