@@ -1,6 +1,13 @@
 MIT License
 
-Copyright (c) 2017 px3l
+All scripts copyright (c) 2017 px3l
+
+besides:
+
+takeover.sh is Copyright 2017 Hector Martin "marcan" <marcan@marcan.st>
+fakeinit.c code based on Rich Felker's trivial init: https://ewontfix.com/14/
+
+-------------------------------------------------------------------------------
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +26,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+-------------------------------------------------------------------------------
