@@ -14,3 +14,7 @@ A script to completely take over a running Linux system remotely, allowing you
 to log into an in-memory rescue environment, unmount the original root
 filesystem, and do anything you want, all without rebooting. Replace one distro
 with another without touching a physical console.
+
+## [03 - diskclone.sh](./readmes/diskclone.md)
+
+This is a script which will create a complete carbon copy clone from disk 1 to disk 2 using the GNU dd command. It will clone the entire drive, including the MBR (and therefore bootloader), all partitions, UUIDs, and data.
