@@ -4,6 +4,8 @@ This is a batch renaming script which will loop through a directory of files and
 
 `DCIM_0273.jpg, DCIM_0245.jpg, DCIM_3713.jpg` > `0001.jpg, 0002.jpg, 0003.jpg`
 
+## Usage
+
 The script is run using:
 
 ```bash
