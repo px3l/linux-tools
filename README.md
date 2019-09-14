@@ -19,3 +19,7 @@ This is a script which will create a complete carbon copy clone from disk 1 to d
 ## [04 - cloanallrepos.sh](./readmes/cloaneallrepos.md)
 
 This script will clone all github repos for a user. Designed for git cloning all my personal repos should I reformat or get a new PC.
+
+## [05 - updater.sh](./readmes/updater.md)
+
+This script will update your Linux distro.
