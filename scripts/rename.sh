@@ -1,31 +1,45 @@
-#!/bin/bash -e
+#!/bin/bash
 
-set -e
+# Simple batch renaming script
+# Usage: ./rename.sh <directory> <file_extension>
 
-export PATH_TO_FILES=${PATH_TO_FILES:="$1"}
-export FILE_TYPE=${FILE_TYPE:="$2"}
+PATH_TO_FILES="${PATH_TO_FILES:-$1}"
+FILE_TYPE="${FILE_TYPE:-$2}"
 
-function move_files() {
-  local filepath="${1}"
-  local filetype="${2}"
-  local imageindex=1
-
-  for i in ${filepath}/*.${filetype}; do
-    new=$(printf "%04d.$FILE_TYPE" "$imageindex") #04 pad to length of 4
-    echo "moving ${i} to ${new}"
-    mv -i -- "$i" "$filepath/$new"
-    imageindex=$((imageindex+1))
-  done
-}
-
-if [ -z "${PATH_TO_FILES}" ]; then
-  >&2 echo "PATH_TO_FILES is required"
-  exit 1
+# Check arguments
+if [ -z "$PATH_TO_FILES" ] || [ -z "$FILE_TYPE" ]; then
+    echo "Usage: $0 <directory> <file_extension>"
+    echo "Example: $0 ~/photos jpg"
+    exit 1
 fi
 
-if [ ! -d "${PATH_TO_FILES}" ]; then
-  >&2 echo "the folder ${PATH_TO_FILES} does not exist"
-  exit 1
+# Check if directory exists
+if [ ! -d "$PATH_TO_FILES" ]; then
+    echo "Error: Directory '$PATH_TO_FILES' does not exist"
+    exit 1
 fi
 
-move_files "${PATH_TO_FILES}" "${FILE_TYPE}"
+# Rename files
+counter=1
+for file in "$PATH_TO_FILES"/*."$FILE_TYPE"; do
+    # Check if file exists (handles case where no files match)
+    [ -e "$file" ] || break
+    
+    # Generate new filename with 4-digit padding
+    new_name=$(printf "%04d.$FILE_TYPE" "$counter")
+    new_path="$PATH_TO_FILES/$new_name"
+    
+    # Skip if target already exists
+    if [ -e "$new_path" ]; then
+        echo "Skipping $(basename "$file") - target exists"
+        ((counter++))
+        continue
+    fi
+    
+    # Rename the file
+    echo "Renaming $(basename "$file") to $new_name"
+    mv "$file" "$new_path"
+    ((counter++))
+done
+
+echo "Done!"

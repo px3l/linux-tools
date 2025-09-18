@@ -1,11 +1,16 @@
 # updater.sh
 
-This script will run through the usual updating commands. It is not really recommended for Linux Mint, you should try using the update manager first.
+A simple script to update your Linux system using apt.
 
 ## Usage
 
-The script is run using:
-
 ```bash
-$ bash updater.sh
+sudo ./updater.sh
 ```
+
+## What it does
+
+1. Updates package lists
+2. Upgrades all packages
+3. Upgrades the distribution
+4. Cleans up unused packages

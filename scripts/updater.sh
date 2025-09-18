@@ -1,43 +1,26 @@
 #!/bin/bash
-echo -e
-echo -e
-GRAY="\033[1;30m"
-RED="\033[0;31m"
-ENDCOLOR="\033[0m"
-echo -e $GRAY"  ====================================================  "$ENDCOLOR
-echo -e $GRAY" ===                                                === "$ENDCOLOR
-echo -e $GRAY"==               "$RED"Linux-updater by px3l"$GRAY"               =="$ENDCOLOR
-echo -e $GRAY" ===                                                === "$ENDCOLOR
-echo -e $GRAY"  ====================================================  "$ENDCOLOR
-echo -e
-echo -e
-                                                                                                                                                                                                                                         
-YELLOW="\033[1;33m"
-RED="\033[0;31m"
-ENDCOLOR="\033[0m"
- 
-if [ $USER != root ]; then
-echo -e $RED"[Linux-updater]:Error: must be root"
-echo -e $YELLOW"[Linux-updater]:Exiting..."$ENDCOLOR
-echo -e
-exit 0
+
+# Simple Linux system updater
+# Usage: sudo ./updater.sh
+
+# Check if running as root
+if [ "$(id -u)" -ne 0 ]; then
+    echo "Error: This script must be run as root"
+    echo "Use: sudo $0"
+    exit 1
 fi
 
-echo -e $YELLOW"[Linux-updater]:Updating sources..."$ENDCOLOR
-sudo apt-get -y update
+echo "Updating package lists..."
+apt-get update
 
-read -p "$(echo -e $YELLOW"[Linux-updater]:Distribution and package upgrades. This is not recommended for Linux Mint, please use the package manager. Continue? (y / n)    "$ENDCOLOR)" -n 1 -r
-echo -e
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-	echo -e $YELLOW"[Linux-updater]:Upgrading..."$ENDCOLOR
-	sudo apt-get -y upgrade
+echo "Upgrading packages..."
+apt-get upgrade -y
 
-  echo -e $YELLOW"[Linux-updater]:Distribution upgrading..."$ENDCOLOR
-	sudo apt-get -y dist-upgrade
-fi
+echo "Upgrading distribution..."
+apt-get dist-upgrade -y
 
-echo -e $YELLOW"[Linux-updater]:Script Finished!"$ENDCOLOR
-echo -e
-echo -e $RED"Upgrading complete."$ENDCOLOR
-echo -e
+echo "Cleaning up..."
+apt-get autoremove -y
+apt-get autoclean
+
+echo "Update complete!"

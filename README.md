@@ -1,6 +1,6 @@
 # Linux Tools
 
-A growing suite of scripts I find useful. Please see individual READMEs for useage.
+A growing suite of scripts I find useful. Please see individual READMEs for usage.
 
 ## [01 - rename.sh](./readmes/rename.md)
 
@@ -14,9 +14,30 @@ A script to completely take over a running Linux system remotely, allowing you t
 
 ## [03 - diskclone.sh](./readmes/diskclone.md)
 
-This is a script which will create a complete carbon copy clone from disk 1 to disk 2 using the GNU dd command. It will clone the entire drive, including the MBR (and therefore bootloader), all partitions, UUIDs, and data.
+A robust disk cloning script that creates a complete carbon copy of a disk using GNU dd with comprehensive safety checks and progress indication.
 
-## [04 - cloanallrepos.sh](./readmes/cloaneallrepos.md)
+### Quick Usage
+
+```bash
+# Basic disk cloning
+sudo ./scripts/diskclone.sh /dev/sda /dev/sdb
+
+# With custom block size
+sudo ./scripts/diskclone.sh /dev/sda /dev/sdb 131072
+
+# Show help
+./scripts/diskclone.sh --help
+```
+
+### Features
+- **Safety checks**: Validates block devices, checks for mounted targets, requires root privileges
+- **Progress indication**: Uses `pv` (pipe viewer) if available, falls back to dd's status=progress
+- **Verification**: Automatically verifies the clone using SHA256 checksums
+- **User-friendly**: Colored output, clear error messages, and confirmation prompts
+
+⚠️ **WARNING**: This will completely overwrite the target disk! Make sure you have backups.
+
+## [04 - cloneallrepos.sh](./readmes/cloneallrepos.md)
 
 This script will clone all github repos for a user. Designed for git cloning all my personal repos should I reformat or get a new PC.
 

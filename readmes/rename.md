@@ -1,32 +1,44 @@
 # rename.sh
 
-This is a batch renaming script which will loop through a directory of files and rename them to an incrementing set of numbers. eg:
-
-`DCIM_0273.jpg, DCIM_0245.jpg, DCIM_3713.jpg` > `0001.jpg, 0002.jpg, 0003.jpg`
+A simple batch renaming script that renames files with a specific extension to an incrementing set of numbers with zero-padding.
 
 ## Usage
 
-The script is run using:
-
 ```bash
-$ bash rename.sh <SOURCE_FOLDER> <FILETYPE>
+./rename.sh <directory> <file_extension>
 ```
 
-For example:
+## Examples
 
 ```bash
-$ bash rename.sh ~/projects/images png
+# Rename all jpg files in ~/photos
+./rename.sh ~/photos jpg
+
+# Rename all png files in current directory
+./rename.sh . png
 ```
 
-You can also use the following env variables in place of position arguments:
+## Environment Variables
 
- * `PATH_TO_FILES`
- * `FILE_TYPE`
-
-For example:
+You can also use environment variables:
 
 ```bash
-$ export PATH_TO_FILES = ~/projects/images
-$ export FILE_TYPE = png
-$ bash rename.sh ~/projects/images png
+PATH_TO_FILES=~/photos FILE_TYPE=jpg ./rename.sh
+```
+
+## What it does
+
+1. Takes all files with the specified extension in the directory
+2. Renames them to 0001.ext, 0002.ext, 0003.ext, etc.
+3. Skips files if the target name already exists
+4. Shows what it's renaming as it goes
+
+## Example
+
+```bash
+# Input files:
+# IMG_001.jpg, IMG_002.jpg, IMG_003.jpg
+
+# Output:
+# 0001.jpg, 0002.jpg, 0003.jpg
 ```

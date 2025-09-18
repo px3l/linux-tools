@@ -1,21 +1,33 @@
 # cloneallrepos.sh
 
-CURRENTLY UNTESTED!!
-
-This script will clone all github repos for a user. Designed for git cloning all my personal repos should I reformat or get a new PC.
-
-USER is required, but PAGE will default to 1 if it isn't entered. Each page has to be cloned separately. Repos per page is set to 100 which is the maximum, so each page on github will be cloned in full.
+A simple script to clone all GitHub repositories for a user.
 
 ## Usage
 
-The script is run using:
-
 ```bash
-$ bash cloneallrepos.sh <USER> <PAGE>
+./cloneallrepos.sh <username> [page]
 ```
 
-For example:
+## Examples
 
 ```bash
-$ bash cloneallrepos.sh px3l 2
+# Clone all repos for user 'px3l'
+./cloneallrepos.sh px3l
+
+# Clone repos from page 2
+./cloneallrepos.sh px3l 2
 ```
+
+## Environment Variables
+
+You can also use environment variables:
+
+```bash
+USER=px3l PAGE=2 ./cloneallrepos.sh
+```
+
+## What it does
+
+1. Gets a list of all repositories for the specified user from GitHub API
+2. Clones each repository into the current directory
+3. Shows progress as it clones each repo
